@@ -63,5 +63,8 @@ jobs:
       - name: Install node_modules
         run: npm i
 
+      - name: Install node_modules
+        run: sudo npm i -g @oracle/ojet-cli
+
       - name: Build ojet project
         run: npm run ojet:build
