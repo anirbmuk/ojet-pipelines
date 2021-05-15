@@ -1,5 +1,5 @@
-# processing-demo
-A sample JET 7.2.0 application to demonstrate overlay processing icon  
+# ojet-pipeline-demo
+A sample OJET 10 app to demonstrate build pipelines  
 
 - - - -
 
