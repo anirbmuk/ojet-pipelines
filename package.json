@@ -24,7 +24,7 @@
         "ojet:format": "prettier --config ./.prettierrc --write \"src/**/*{.js,.json,.css,.html}\"",
         "ojet:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.js,.json,.css,.html}\"",
         "ojet:lint": "eslint \"src/**/*.js\"",
-        "build": "npm run ojet:check && npm run ojet:lint && npm run ojet:build"
+        "build": "npm run ojet:lint && npm run ojet:check && npm run ojet:build"
     },
     "dependencies": {
         "@oracle/oraclejet": "~10.1.0"

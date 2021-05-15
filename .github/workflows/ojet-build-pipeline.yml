@@ -1,0 +1,67 @@
+name: OJET Build Pipeline
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on pull request and push events but only for the main branch
+  pull_request:
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules
+        id: cache-node-modules-pre
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-ojet-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install node_modules
+        if: steps.cache-node-modules-pre.outputs.cache-hit != 'true'
+        run: npm i
+
+  check:
+    needs: [install]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-ojet-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install node_modules
+        run: npm i
+
+      - name: Check linting
+        run: npm run ojet:lint
+
+      - name: Check prettier
+        run: npm run ojet:check
+
+  build:
+    needs: [check]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-ojet-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install node_modules
+        run: npm i
+
+      - name: Build ojet project
+        run: npm run ojet:build
