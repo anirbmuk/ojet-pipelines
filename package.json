@@ -1,0 +1,41 @@
+{
+    "name": "ojet-pipeline-demo",
+    "version": "1.0.0",
+    "description": "OJET 10 app to demonstrate build pipelines",
+    "keywords": [
+        "ojet",
+        "eslint",
+        "prettier",
+        "pipeline"
+    ],
+    "author": {
+        "name": "anirbmuk",
+        "email": "anirbmuk@live.in"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anirbmuk/ojet-pipelines.git"
+    },
+    "bugs": {
+        "url": "https://github.com/anirbmuk/ojet-pipelines/issues"
+    },
+    "scripts": {
+        "ojet:build": "ojet build web --release",
+        "ojet:format": "prettier --config ./.prettierrc --write \"src/**/*{.js,.json,.css,.html}\"",
+        "ojet:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.js,.json,.css,.html}\"",
+        "ojet:lint": "eslint \"src/**/*.js\"",
+        "build": "npm run ojet:check && npm run ojet:lint && npm run ojet:build"
+    },
+    "dependencies": {
+        "@oracle/oraclejet": "~10.1.0"
+    },
+    "devDependencies": {
+        "@oracle/oraclejet-tooling": "~10.1.0",
+        "eslint": "^7.26.0",
+        "prettier": "^2.3.0"
+    },
+    "engines": {
+        "node": ">=10.13.0"
+    },
+    "private": true
+}

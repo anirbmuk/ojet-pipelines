@@ -1,0 +1,11 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+/.firebase
+/tmp
+/node_modules
+/firebase-debug.log
+/scripts
+/staged-themes
+/web
