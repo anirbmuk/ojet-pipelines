@@ -9,8 +9,6 @@ define([
   function ControllerViewModel() {
     const self = this;
 
-    self.processing = ko.observable(false);
-
     var smQuery = ResponsiveUtils.getFrameworkQuery(
       ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY
     );
@@ -22,14 +20,6 @@ define([
     self.config = ModuleElementUtils.createConfig({
       name: 'sample'
     });
-
-    self.startProcessing = function () {
-      self.processing(true);
-    };
-
-    self.endProcessing = function () {
-      self.processing(false);
-    };
   }
 
   return new ControllerViewModel();
